@@ -3,6 +3,6 @@ import { healthCheck, healthcheck } from "../controllers/healthcheck.controller.
 
 const router = Router()
 
-router.route("/").get(healthCheck)
+router.route('/').get(healthCheck)
 
 export default router
