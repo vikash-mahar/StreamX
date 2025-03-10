@@ -106,6 +106,7 @@ function SignUp() {
                         required
                         className="px-2 rounded-lg"
                         className2="pt-5"
+                        autoComplete="username"
                         placeholder="Choose your username"
                         {...register("username", {
                             required: true,
@@ -159,6 +160,7 @@ function SignUp() {
                         className="px-2 rounded-lg"
                         className2="pt-5"
                         type="password"
+                        autoComplete="current-password"
                         placeholder="Create your password"
                         required
                         {...register("password", {
