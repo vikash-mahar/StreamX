@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { parseErrorMessage } from "./parseErrorMsg";
 
 const axiosInstance = axios.create({
-    baseURL:'https://stream-vikash-mahars-projects.vercel.app/',
+    baseURL:"",
     withCredentials: true,
 });
 
