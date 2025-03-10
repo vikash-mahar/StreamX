@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserLikedVideos } from "../hooks/getuserLikedVideos";
+import { getUserLikedVideos } from "../hooks/getUserLikedVideos";
 import VideoListCard from "../components/Video/VideoListCard";
 import { BiLike } from "react-icons/bi";
 import { icons } from "../assets/Icons.jsx";
