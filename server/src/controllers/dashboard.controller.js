@@ -1,9 +1,9 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import { video } from "../models/video.model.js";
-import { subscription } from "../models/subcription.model.js";
-import { tweet } from "../models/tweet.model.js";
+import { Video } from "../models/video.model.js";
+import { Subscription } from "../models/subcription.model.js";
+import { Tweet } from "../models/tweet.model.js";
 import mongoose, { isValidObjectId } from "mongoose";
 
 const getChannelStats = asyncHandler(async(req,res)=>{
