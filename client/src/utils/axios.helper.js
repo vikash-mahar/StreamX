@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { parseErrorMessage } from "./parseErrorMsg";
 
 const axiosInstance = axios.create({
-    baseURL:"https://stream-theta-five.vercel.app/api/v1",
+    baseURL:"http://localhost:5173/api/v1",
     withCredentials: true,
 });
 
