@@ -18,7 +18,7 @@ import { checkUser } from "../middlewares/openAuth.middleware.js";
 
 const router = Router();
 
-router.route("/users/register").post(
+router.route("/register").post(
     upload.fields([
         { name: "avatar", maxCount: 1 },
         {name: "coverImage",maxCount: 1,},
