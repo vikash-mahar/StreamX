@@ -1,4 +1,4 @@
-import axiosInstance from "../utils/axios.helper";
+import axiosInstance from "../utils/axios.helper.js";
 import { toast } from "react-toastify";
 
 export const healthCheck = async () => {
