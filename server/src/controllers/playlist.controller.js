@@ -2,8 +2,8 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import mongoose, { isValidObjectId, mongo } from "mongoose";
-import { playlist, Playlist } from "../models/playlist.model.js";
-import { Video } from "../models/video.model.js";
+import { playlist, } from "../models/playlist.model.js";
+import { video } from "../models/video.model.js";
 
 const createPlaylist = asyncHandler(async (req,res)=>{
     const {name , description} = req.body
@@ -26,7 +26,7 @@ const createPlaylist = asyncHandler(async (req,res)=>{
     .json(new ApiResponse(200,playlist,"playlist created successfully"))
 })
 
-const getUserPlaylist = asyncHandler(async(req,res)=>{
+const getUserPlaylists = asyncHandler(async(req,res)=>{
     const {userId} = req.params
 
     if(!userId ||!isValidObjectId(userId)){
@@ -109,7 +109,7 @@ const getUserPlaylist = asyncHandler(async(req,res)=>{
     .json(new ApiResponse(200, playlist, "playlist fetched successfully"))
 })
 
-const getPlaylistbyId = asyncHandler(async (req,res)=>{
+const getPlaylistById = asyncHandler(async (req,res)=>{
     const {playlistId} = req.params
 
     if(!playlistId || !isValidObjectId(playlistId)){
@@ -426,8 +426,8 @@ const getVideoPlaylist = asyncHandler(async(req,res)=>{
 
 export{
     createPlaylist,
-    getUserPlaylist,
-    getPlaylistbyId,
+    getUserPlaylists,
+    getPlaylistById,
     addVideoToPlaylist,
     removeVideoFromPlaylist,
     deletePlaylist,

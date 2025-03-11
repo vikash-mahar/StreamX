@@ -5,7 +5,7 @@ import {
     getUserChannelProfile,
     getWatchHistory,
     loginUser,
-    logOutUser,
+    logoutUser,
     refreshAccessToken,
     registerUser,
     updateAccountDetails,
@@ -18,7 +18,7 @@ import { checkUser } from "../middlewares/openAuth.middleware.js";
 
 const router = Router();
 
-router.route("/register").post(
+router.route("/users/register").post(
     upload.fields([
         { name: "avatar", maxCount: 1 },
         {name: "coverImage",maxCount: 1,},
@@ -29,7 +29,7 @@ router.route("/register").post(
 router.route("/login").post(loginUser);
 
 //secured routes
-router.route("/logout").post(verifyJWT, logOutUser);
+router.route("/logout").post(verifyJWT, logoutUser);
 router.route("/refresh-token").post(refreshAccessToken);
 router.route("/change-password").post(verifyJWT, changeCurrentPassword);
 router.route("/current-user").get(verifyJWT, getCurrentUser);
