@@ -42,16 +42,16 @@ function VideoContainer(){
         setPage((prevPage)=> prevPage+1);
     };
 
-    if(loading){
-        return (<span className="flex justify-center mt-20">{icons.bigLoading}</span>);
-    }
+    // if(loading){
+    //     return (<span className="flex justify-center mt-20">{icons.bigLoading}</span>);
+    // }
 
     if (videos.length === 0) {
         return (
             <div className="flex justify-center mt-[30vh]">
                 <div className="flex flex-col items-center">
-                    <FaVideo className="w-20 h-20" />
-                    <h1>No Videos Available</h1>
+                    <FaVideo className="w-33 h-33" />
+                    <h1 className="text-3xl">No Videos Available</h1>
                 </div>
             </div>
         );
