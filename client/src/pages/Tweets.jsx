@@ -32,6 +32,7 @@ function Tweets() {
 
     const getAllTweets = async () => {
         try {
+            const token = localStorage.getItem("accessToken");
             const response = await axiosInstance.get(
                 `/tweets?page=${page}&limit=30`,{
                     Authorization: `Bearer ${token}`,
@@ -54,6 +55,7 @@ function Tweets() {
             LoginPopupDialog.current.open();
         } else {
             try {
+                const token = localStorage.getItem("accessToken");
                 axiosInstance.post("/tweets", data,{
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",

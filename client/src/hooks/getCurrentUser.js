@@ -3,6 +3,7 @@ import { setUser } from "../store/authSlice";
 
 export const getCurrentUser = async (dispatch) => {
     try {
+        const token = localStorage.getItem("accessToken");
         const response = await axiosInstance.get("/users/current-user",{
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
