@@ -33,7 +33,10 @@ function Tweets() {
     const getAllTweets = async () => {
         try {
             const response = await axiosInstance.get(
-                `/tweets?page=${page}&limit=30`
+                `/tweets?page=${page}&limit=30`,{
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                  }
             );
             if (response?.data?.data?.length === 30) {
                 dispatch(addTweets(response.data.data));
@@ -51,7 +54,10 @@ function Tweets() {
             LoginPopupDialog.current.open();
         } else {
             try {
-                await axiosInstance.post("/tweets", data);
+                axiosInstance.post("/tweets", data,{
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                  });
                 reset();
                 setTweetsUpdated((prev) => !prev);
                 setPage(1);
