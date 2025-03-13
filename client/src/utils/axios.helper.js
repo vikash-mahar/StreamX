@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { parseErrorMessage } from "./parseErrorMsg";
 
 const axiosInstance = axios.create({
-    baseURL:"http://localhost:5173/api/v1",
+    baseURL:"http://localhost:3000/api/v1",
     withCredentials: true,
 });
 
