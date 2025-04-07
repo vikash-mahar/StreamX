@@ -3,7 +3,9 @@ import {Video} from "../models/video.model.js"
 import {User} from "../models/user.model.js"
 import {ApiError} from "../utils/ApiError.js"
 import {ApiResponse} from "../utils/ApiResponse.js"
-import {asyncHandler} from "../utils/asyncHandler.js"
+import {asyncHandler} from "../utils/asyncHandler.js";
+import fs from 'fs';
+import path from 'path';
 import {deleteFromCloudinary, uploadOnCloudinary} from "../utils/cloudinary.js"
 
 const getAllVideos = asyncHandler(async (req,res)=>{
@@ -191,24 +193,29 @@ const getUserVideos = asyncHandler(async(req,res)=>{
     .json(new ApiResponse(200, videos,"all videos fetched successfully"))
 
 })
+ 
 
 const publishAVideo = asyncHandler(async(req,res)=>{
     const {title, description}= req.body
-    const videoLocalPath = req.files?.videoFile[0].Path
-    const thumbnailLocalPath = rea.files?.thumbnail[0].path
+    const videoLocalPath = req.files?.videoFile[0].path
+    const thumbnailLocalPath = req.files?.thumbnail[0].path
 
     if(!title ||title.trim()===""){
         throw new ApiError(400,"title is required")
     }
 
-    if(!videoLocalPath){
-        unLinkPath(videoLocalPath, thumbnailLocalPath)
-        throw new ApiError(401,"video is required")
+    if (!videoLocalPath) {
+        if (thumbnailLocalPath) {
+            fs.unlinkSync(thumbnailLocalPath);
+        }
+        throw new ApiError(400, "Video is required");
     }
-
-    if(!thumbnailLocalPath){
-        unLinkPath(videoLocalPath, thumbnailLocalPath)
-        throw new ApiError(401,"thumbnail is required")
+    
+    if (!thumbnailLocalPath) {
+        if (videoLocalPath) {
+            fs.unlinkSync(videoLocalPath);
+        }
+        throw new ApiError(400, "Thumbnail is required");
     }
 
     const videoFile = await uploadOnCloudinary(videoLocalPath)
@@ -238,6 +245,7 @@ const publishAVideo = asyncHandler(async(req,res)=>{
 
 const getVideoById = asyncHandler(async(req,res)=>{
     const {videoId} = req.params
+    console.log("Video ID:", videoId);
 
     if(!videoId ||!isValidObjectId(videoId)){
         throw new ApiError(400,"invalid video id")
@@ -246,11 +254,7 @@ const getVideoById = asyncHandler(async(req,res)=>{
     const video = await Video.aggregate([
         {
             $match:{
-                video: new mongoose.Types.ObjectId(videoId)
-            }
-        },
-        {
-            $match:{
+                videoFile: new mongoose.Types.ObjectId(videoId),
                 isPublished:true
             }
         },
@@ -340,8 +344,9 @@ const getVideoById = asyncHandler(async(req,res)=>{
         }
     ])
 
-    if(!video.length){
-        throw new ApiError(404,"video does not exist")
+
+    if (!video || !video.length) {
+        throw new ApiError(404, "Video does not exist");
     }
 
     await Video.findByIdAndUpdate(videoId,{

@@ -155,7 +155,7 @@ const getChannelVideos = asyncHandler(async(req,res)=>{
         throw new ApiError(500,"no video found")
     }
 
-    return res.stats(200)
+    return res.status(200)
     .json(new ApiResponse(200,videos,"video fetched successfully"))
 })
 

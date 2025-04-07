@@ -17,10 +17,10 @@ const router = Router();
 
 router.route("/").get(getAllVideos);
 router.route("/c/:userId").get(getUserVideos);
-router.route("/:videoId").get(checkUser, getVideoById);
+router.route("/:videoId").get(verifyJWT, getVideoById);
 
-router.use(verifyJWT);
-router.route("/").post(
+router.use(verifyJWT)
+.post("/",
     upload.fields([
         {
             name: "videoFile",
@@ -32,12 +32,12 @@ router.route("/").post(
         },
     ]),
     publishAVideo
-);
+)
 
 
-router.route("/:videoId").delete(deleteVideo)
-router.route("/:videoId").patch(upload.single("thumbnail"), updateVideo);
-router.route("/toggle/publish/:videoId").patch(togglePublishStatus);
-router.route("/s/subscription").get(getSubscribedVideos);
+.delete("/:videoId",deleteVideo)
+.patch("/:videoId", upload.single("thumbnail"), updateVideo)
+.patch("/toggle/publish/:videoId", togglePublishStatus)
+.get("/s/subscription",getSubscribedVideos);
 
 export default router;

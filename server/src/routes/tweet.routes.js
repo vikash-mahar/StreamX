@@ -12,11 +12,11 @@ import { checkUser } from '../middlewares/openAuth.middleware.js';
 const router = Router();
 
 router.route("/user/:userId").get(checkUser, getUserTweets);
-router.route("/").get(checkUser, getAllTweets);
+router.route("/").get(getAllTweets);
 
-router.use(verifyJWT);
-router.route("/").post(createTweet);
-router.route("/:tweetId").patch(updateTweet)
-router.route("/:tweetId").delete(deleteTweet);
+router.use(verifyJWT)
+.post("/",createTweet)
+.patch("/:tweetId",updateTweet)
+.delete("/:tweetId",deleteTweet);
 
 export default router

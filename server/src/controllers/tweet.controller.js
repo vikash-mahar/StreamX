@@ -274,23 +274,19 @@ const getAllTweets = asyncHandler(async(req,res)=>{
             $limit:parseInt(limit)
         },
         {
-            $lookup:{
-                from:"users",
-                localField:"owner",
-                foreignField:"_id",
-                as:"owner",
-                pipeline:[
-                    {
-                        $project:{
-                            _id:1,
-                            username:1,
-                            fullName:1,
-                            avatar:1
-                        }
-                    }
-                ]
+            $lookup: {
+                from: "users",
+                localField: "owner",
+                foreignField: "_id",
+                as: "owner"
             }
-        },
+        }, 
+        // {
+        //     $unwind: {
+        //         path: "$owner",
+        //     }
+        // },
+        
         {
             $addFields:{
                 owner:{
