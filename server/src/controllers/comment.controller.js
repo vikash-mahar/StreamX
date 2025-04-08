@@ -46,8 +46,13 @@ const getVideoComment = asyncHandler(async(req,res)=>{
             }
         },
         {
+            $unwind:{
+                path:"$owner"
+            }
+        },
+        {
             $lookup:{
-                from:"likes",
+               from:"likes",
                 localField:"_id",
                 foreignField:"comment",
                 as:"likes"
@@ -55,9 +60,6 @@ const getVideoComment = asyncHandler(async(req,res)=>{
         },
         {
             $addFields:{
-                owner:{
-                    $first:"owner"
-                },
                 likesCount:{
                     $size:"$likes"
                 },
@@ -83,6 +85,8 @@ const getVideoComment = asyncHandler(async(req,res)=>{
             }
         }
     ])
+
+    // console.log(getComments);
 
     if(!getComments){
         throw new ApiError(501, "error while fetching comments")

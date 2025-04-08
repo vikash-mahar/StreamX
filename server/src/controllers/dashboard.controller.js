@@ -84,7 +84,7 @@ const getChannelStats = asyncHandler(async(req,res)=>{
             }
         }
     ])
-
+console.log(SubscriberStats)
     if(!videoStats && SubscriberStats && tweetStats){
         throw new ApiError(500,"failed to fetch channel data")
     }

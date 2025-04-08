@@ -16,14 +16,17 @@ const toggleSubscription = asyncHandler(async (req,res)=>{
     if(channelId.toString()=== req.user?._id.toString()){
         throw new ApiError(403,"cannot subscribe to ur own channel")
     }
+    console.log("channelid",channelId)
 
     const isSubscribed= await Subscription.findOne({
         channel:channelId,
-        subscriber:req.user?._id
+        // subscriber:req.user?._id
     })
+    console.log(isSubscribed)
 
     if(isSubscribed){
-        const unSubscribed = await Subscription.findByIdAndDelete(isSubscribed?._id)
+        const unSubscribed = await Subscription.deleteOne(isSubscribed._id)
+        console.log("unsubscribed",unSubscribed)
         if(!unSubscribed){
             throw new ApiError(500,"error while unsubscribing channel")
         }
@@ -33,13 +36,16 @@ const toggleSubscription = asyncHandler(async (req,res)=>{
             channel:channelId,
             subscriber:req.user?._id
         })
+
+        console.log("subscribe",subscribe)
+
         if(!subscribe){
             throw new ApiError(500,"error while subscribing channel")
         }
     }
 
     return res.status(200)
-    .json(new ApiResponse(200,{},"subscribe status updated"))
+    .json(new ApiResponse(200,{isSubscribed: !isSubscribed },"subscribe status updated"))
 })
 
 const getUserChannelSubscribers = asyncHandler(async(req,res)=>{

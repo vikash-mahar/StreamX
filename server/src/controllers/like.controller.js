@@ -17,8 +17,8 @@ const toggleVideoLike = asyncHandler(async(req,res)=>{
         likedBy:req.user?._id
     })
 
-    if(isliked){
-        const removeLike= await like.findByIdAndDelete(isLiked.ApiError_id)
+    if(isLiked){
+        const removeLike= await Like.findByIdAndDelete(isLiked._id)
         if(!removeLike){
             throw new ApiError(500,"error while removing like")
         }
@@ -46,19 +46,22 @@ const toggleCommentLike = asyncHandler(async(req,res)=>{
         throw new ApiError(400,"comment not found by id")
     }
 
+    console.log(commentId)
+
     const isLiked= await Like.findOne({
         Comment:commentId,
         likedBy:req.user?._id
     })
+    console.log("isliked",isLiked)
 
     if(isLiked){
-        const removeLike = await Like.findByIdAndDelete(isLiked?._id)
+        const removeLike = await Like.findByIdAndDelete(isLiked._id)
         if(!removeLike){
             throw new ApiError(500,"error while disliking comment")
         }
     }
     else{
-        const like = await Like.create({
+        await Like.create({
             Comment:commentId,
             likedBy:req.user?._id
         })
@@ -81,12 +84,19 @@ const toggleTweetLike = asyncHandler(async(req,res)=>{
         likedBy:req.user?._id
     })
 
-    if(!isLiked){
-        const removeLike = await Like.findByIdAndDelete(isLiked?._id)
+    if(isLiked){
+        const removeLike= await Like.findByIdAndDelete(isLiked._id)
         if(!removeLike){
-            throw new ApiError(500,"error while disliking tweet")
+            throw new ApiError(500,"error while removing like")
         }
     }
+
+    // if(isLiked){
+    //     const removeLike = await Like.findByIdAndDelete(isLiked._id)
+    //     if(!removeLike){
+    //         throw new ApiError(500,"error while disliking tweet")
+    //     }
+    // }
     else{
         const like = await Like.create({
             tweet:tweetId,
