@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import Button from "../components/Button.jsx";
 import axiosInstance from "../utils/axios.helper.js";
 import Tweet from "../components/Tweet/TweetCard.jsx";
-import { addTweets, removeTweets } from "../store/tweetsSlice.js";
+import { addTweets, removeTweets, setTweets } from "../store/tweetsSlice.js";
 import GuestComponent from "../components/GuestPages/GuestComponent.jsx";
 import { TiMessages } from "react-icons/ti";
 import { useLocation } from "react-router-dom";
@@ -40,13 +40,17 @@ function Tweets() {
                   }
             );
 
-            console.log(response);
+            console.log(response.data);
+
             if (response?.data?.data?.length === 30) {
-                dispatch(addTweets(response.data.data));
+                dispatch(setTweets(response.data.data));
             } else {
-                dispatch(addTweets(response.data.data));
+                dispatch(setTweets(response.data.data));
                 setHasMore(false);
             }
+
+            toast.success(response.data.message)
+
         } catch (error) {
             console.log("Error while fetching tweets", error);
         }
@@ -58,12 +62,15 @@ function Tweets() {
         } else {
             try {
                 const token = localStorage.getItem("accessToken");
-                axiosInstance.post("/tweets", data,{
+                const {data: response} = await axiosInstance.post("/tweets", data,{
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",
                   });
                 reset();
-                setTweetsUpdated((prev) => !prev);
+
+                dispatch(addTweets(response.data));
+
+                setTweetsUpdated(!tweetsUpdated);
                 setPage(1);
             } catch (error) {
                 toast.error("Couldn't add your tweet. Try again!");

@@ -77,24 +77,24 @@ function Channel() {
     return profile ? (
         <section className="relative w-full pb-[70px] sm:ml-[70px] sm:pb-0 lg:ml-0">
             <div className="relative min-h-[150px] w-full pt-[20%]">
-                <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute inset-0 overflow-hidden w-full">
                     <img
                         src={profile?.coverImage || streamify_cover}
                         alt="user"
-                        className="object-cover"
+                        className="object-cover w-full"
                     />
                 </div>
             </div>
 
             <div className="px-4 pb-4">
                 <div className="flex flex-wrap gap-4 pb-4 pt-6">
-                    <span className="relative -mt-12 inline-block h-32 w-32 shrink-0 overflow-hidden rounded-full border-2">
+                    <div className="relative -mt-12 inline-block h-32 w-32 shrink-0 overflow-hidden rounded-full border-2">
                         <img
                             src={profile?.avatar}
                             alt="image"
                             className="h-full w-full object-cover"
                         />
-                    </span>
+                    </div>
                     <div className="mr-auto inline-block">
                         <h1 className="font-bold text-xl">
                             {profile?.fullName}

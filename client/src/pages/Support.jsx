@@ -28,11 +28,11 @@ function Support() {
                                         LinkedIn
                                     </h2>
                                     <a
-                                        href="https://www.linkedin.com/in/sameer0820/"
+                                        href="https://www.linkedin.com/in/vikash-mahar-477a2a229//"
                                         target="_blank"
                                         className="text-blue-500 text-sm hover:text-blue-400 "
                                     >
-                                        /sameer0820
+                                        /vikash-mahar
                                     </a>
                                 </div>
                             </li>
@@ -45,11 +45,11 @@ function Support() {
                                         GitHub
                                     </h2>
                                     <a
-                                        href="https://github.com/Sameer0820"
+                                        href="https://github.com/vikash-mahar"
                                         target="_blank"
                                         className="text-blue-500 text-sm hover:text-blue-400 "
                                     >
-                                        /Sameer0820
+                                        /vikash-mahar
                                     </a>
                                 </div>
                             </li>
@@ -62,7 +62,7 @@ function Support() {
                                         Discord
                                     </h2>
                                     <p className="text-blue-500 text-sm hover:text-blue-400 ">
-                                        @sameerraj0820
+                                        @vikashmaharr
                                     </p>
                                 </div>
                             </li>

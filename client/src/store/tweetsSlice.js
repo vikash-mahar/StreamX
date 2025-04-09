@@ -8,10 +8,18 @@ const tweetSlice = createSlice({
     name:"tweets",
     initialState,
     reducers:{
-        addTweets: (state,action)=>{
-            // state.tweets= [...state.tweets, ...action.payload]
-            // push modifies the existing array, instead of creating a new one. This can be more efficient when adding multiple items
-            state.tweets.push(...action.payload)
+        // addTweets: (state,action)=>{
+        //     // state.tweets= [...state.tweets, ...action.payload]
+        //     // push modifies the existing array, instead of creating a new one. This can be more efficient when adding multiple items
+        //     state.tweets=action.payload
+        // },
+
+        setTweets: (state, action) =>  {
+            state.tweets = action.payload;
+        },
+
+        addTweets: (state, action) => {
+            state.tweets = [action.payload, ...state.tweets]
         },
         removeTweets: (action,state)=>{
             state.tweets=[]
@@ -33,6 +41,6 @@ const tweetSlice = createSlice({
     }
 })
 
-export const {addTweets, removeTweets, deleteTweet, updateTweet, toggleLike} = tweetSlice.actions
+export const {addTweets, removeTweets, deleteTweet, setTweets,updateTweet, toggleLike} = tweetSlice.actions
 
 export default tweetSlice.reducer
