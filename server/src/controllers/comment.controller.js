@@ -128,6 +128,8 @@ const addComment = asyncHandler(async(req,res)=>{
 const updateComment = asyncHandler(async(req,res)=>{
     const {content} = req.user
     const {commentId} = req.param
+    console.log("commentid",commentId)
+    console.log("content",content)
 
     if(!content?.trim()){
         throw new ApiError(400," comment cannot be empty")

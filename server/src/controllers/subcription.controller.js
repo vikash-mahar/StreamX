@@ -118,67 +118,135 @@ const getSubscribedChannels = asyncHandler(async(req,res)=>{
         throw new ApiError(400, "No valid subscriber Id found");
     }
 
+    // const SubscribedChannels = await Subscription.aggregate([
+    //     {
+    //         $match:{
+    //             subscriber:new mongoose.Types.ObjectId(subscriberId)
+    //         }
+    //     },
+    //     {
+    //         $lookup:{
+    //             from:"users",
+    //             localField:"channel",
+    //             foreignField:"_id",
+    //             as:"channelDetails",
+    //         }
+    //     },
+    //     {
+    //         $unwind:"$channelDetails"
+    //     },
+    //     {
+    //         $lookup:{
+    //             from:"subscriptions",
+    //             localField:"channel",
+    //             foreignField:"channel",
+    //             as:"channelSubscribers"
+    //         }
+    //     },
+    //     {
+    //         $addFields:{
+    //             "channelDetail.isSubscribed":{
+    //                 $cond:{
+    //                     if:{$in:[new mongoose.Types.ObjectId(req.user?._id),"$channelDetail.isSubscribed"]},
+    //                     then:true,
+    //                     else:false
+    //                 }
+    //             },
+    //             "channelDetail.isSubscribed":{
+    //                 $size:"$channelSubscribers"
+    //             }
+    //         }
+    //     },
+    //     {
+    //         $group:{
+    //             _id:null,
+    //             channels:{
+    //                 $push:"$channelDetails"
+    //             },
+    //             totalChannels:{
+    //                 $sum:1
+    //             }
+    //         }
+    //     },
+    //     {
+    //         $project:{
+    //             channel:{
+    //                 _id:1,
+    //                 isSubscribed:1,
+    //                 subscribersCount:1,
+    //                 fullName:1,
+    //                 avatar:1,
+    //                 username:1
+    //             },
+    //             channelsCount:"$totalChannels"
+    //         }
+    //     }
+    // ])
+
     const SubscribedChannels = await Subscription.aggregate([
         {
-            $match:{
-                subscriber:new mongoose.Types.ObjectId(subscriberId)
+            $match: {
+                subscriber: new mongoose.Types.ObjectId(subscriberId)
             }
         },
         {
-            $lookup:{
-                from:"users",
-                localField:"channel",
-                foreignField:"_id",
-                as:"channelDetails",
+            $lookup: {
+                from: "users",
+                localField: "channel",
+                foreignField: "_id",
+                as: "channelDetails",
+                pipeline: [
+                    {
+                        $project: {
+                            fullName: 1,
+                            avatar: 1,
+                            username: 1
+                        }
+                    }
+                ]
             }
         },
         {
-            $unwind:"$channelDetails"
+            $unwind: "$channelDetails"
         },
         {
-            $lookup:{
-                from:"subscriptions",
-                localField:"channel",
-                foreignField:"channel",
-                as:"channelSubscribers"
+            $lookup: {
+                from: "subscriptions",
+                localField: "channel",
+                foreignField: "channel",
+                as: "channelSubscribers"
             }
         },
         {
-            $addFields:{
-                "channelDetail.isSubscribed":{
-                    $cond:{
-                        if:{$in:[new mongoose.Types.ObjectId(req.user?._id),"$channelDetail.isSubscribed"]},
-                        then:true,
-                        else:false
+            $addFields: {
+                "channelDetails.isSubscribed": {
+                    $cond: {
+                        if: { $in: [req.user?._id, ["$channelDetail.isSubscribed"]] },
+                        then: true,
+                        else: false
                     }
                 },
-                "channelDetail.isSubscribed":{
-                    $size:"$channelSubscribers"
+                "channelDetails.subscribersCount": {
+                    $size: "$channelSubscribers"
                 }
             }
         },
         {
-            $group:{
-                _id:null,
-                channels:{
-                    $push:"$channelDetails"
+            $group: {
+                _id: null,
+                channels: {
+                    $push: "$channelDetails"
                 },
-                totalChannels:{
-                    $sum:1
+                totalChannels: {
+                    $sum: 1
                 }
             }
         },
         {
-            $project:{
-                channel:{
-                    _id:1,
-                    isSubscribed:1,
-                    subscribersCount:1,
-                    fullName:1,
-                    avatar:1,
-                    username:1
-                },
-                channelsCount:"$totalChannels"
+            $project: {
+                _id: 0,
+                channels: 1,
+                channelsCount: "$totalChannels"
             }
         }
     ])

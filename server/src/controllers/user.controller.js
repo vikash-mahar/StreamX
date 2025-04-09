@@ -246,9 +246,9 @@ const getCurrentUser = asyncHandler(async(req,res)=>{
 })
 
 const updateAccountDetails = asyncHandler(async (req,res)=>{
-    const {fullName, email} = req.body
+    const {fullName} = req.body
 
-    if(!fullName ||email){
+    if(!fullName){
         throw new ApiError(400, "All fields are required")
     }
 
@@ -282,7 +282,7 @@ const updateUserAvatar = asyncHandler(async(req,res)=>{
     }
 
     const user = await User.findByIdAndUpdate(
-        re.user?._id,
+        req.user?._id,
         {
             $set:{
                 avatar: avatar.url
@@ -312,7 +312,7 @@ const updateUserCoverImage = asyncHandler(async(req,res)=>{
     }
 
     const user = await User.findByIdAndUpdate(
-        re.user?._id,
+        req.user?._id,
         {
             $set:{
                 coverImage: coverImage.url
@@ -340,7 +340,7 @@ const getUserChannelProfile = asyncHandler( async(req,res)=>{
     const channel = await User.aggregate([
         {
             $match: {
-                username: username?.toLowerCase
+                username: username?.toLowerCase()
             }
         },
         {
