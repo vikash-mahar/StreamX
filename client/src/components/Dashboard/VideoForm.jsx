@@ -74,7 +74,7 @@ function VideoForm({ video = false }, ref) {
         } catch (error) {
             uploadingDialog.current.close();
             toast.error("Error while uploading video. Try again!!");
-            console.log("Error uploading video", error);
+            console.log("Error uploading video", error.response);
         }
     };
 

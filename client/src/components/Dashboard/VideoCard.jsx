@@ -17,7 +17,7 @@ function VideoCard({ video }) {
     const editDialog = useRef();
     const user = useSelector((state) => state.auth.userData);
 
-    const [publishStatus, setPublishStatus] = useState(video?.isPublished);
+    const [publishStatus, setPublishStatus] = useState(video?.ispublished);
 
     const handleTogglePublish = async () => {
         try {
@@ -28,7 +28,7 @@ function VideoCard({ video }) {
                 dispatch(
                     updateVideoPublishStatus({
                         videoId: video._id,
-                        isPublished: !video.isPublished,
+                        ispublished: !video.ispublished,
                     })
                 );
                 toast.success(response.data.message);

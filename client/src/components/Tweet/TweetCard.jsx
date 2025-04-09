@@ -130,11 +130,11 @@ function Tweet({ tweet, page = false }) {
                     to={`${
                         userData?._id === tweet?.owner?._id
                             ? ""
-                            : "/channel/" + tweet.owner.username
+                            : "/channel/" + tweet.owner?.username
                     }`}
                 >
                     <img
-                        src={tweet.owner.avatar}
+                        src={tweet.owner?.avatar}
                         alt="user"
                         className="h-full w-full rounded-full object-cover"
                     />
