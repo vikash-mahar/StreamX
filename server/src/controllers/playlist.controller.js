@@ -65,7 +65,7 @@ const getUserPlaylists = asyncHandler(async(req,res)=>{
                 pipeline: [
                     {
                         $match: {
-                            isPublished: true 
+                            ispublished: true 
                         },
                     },
                     {
@@ -155,7 +155,7 @@ const getPlaylistById = asyncHandler(async (req,res)=>{
                 pipeline:[
                     {
                         $match:{
-                            isPublished:true
+                            ispublished:true
                         }
                     },
                     {

@@ -113,6 +113,7 @@ const toggleTweetLike = asyncHandler(async(req,res)=>{
 
 const getLikedVideos = asyncHandler(async(req,res)=>{
     const {page=1,limit=10} = req.query
+    console.log("videos")
 
     const likedVideos= await Like.aggregate([
         {
@@ -137,7 +138,7 @@ const getLikedVideos = asyncHandler(async(req,res)=>{
                 pipeline:[
                     {
                         $match:{
-                            isPublished:true
+                            ispublished:true
                         }
                     },
                     {
@@ -180,12 +181,22 @@ const getLikedVideos = asyncHandler(async(req,res)=>{
                     $exists:true
                 }
             }
+        },
+        {
+            $project:{
+                username:1,
+                avatar:1,
+                video:1,
+                thumbnail:1,
+            }
         }
     ])
 
     if(!likedVideos){
         throw new ApiError(500,"error while getting liked videos")
     }
+
+    console.log(likedVideos)
 
     return res.status(200)
     .json(new ApiResponse(200,likedVideos,"liked video fetched successfully"))

@@ -86,7 +86,7 @@ const getAllVideos = asyncHandler(async (req,res)=>{
                 title: 1,
                 duration: 1,
                 views: 1,
-                isPublished: 1,
+                ispublished: 1,
             }
         }
     ])
@@ -106,7 +106,7 @@ const getUserVideos = asyncHandler(async(req,res)=>{
     if(!userId ||!isValidObjectId(userId)){
         throw new ApiError(400,"videos not found")
     }
-
+    
     const videos = await Video.aggregate([
         {
             $match:{
@@ -115,7 +115,7 @@ const getUserVideos = asyncHandler(async(req,res)=>{
         },
         {
             $match:{
-                isPublished:true
+                ispublished:true
             }
         },
         {
@@ -161,7 +161,7 @@ const getUserVideos = asyncHandler(async(req,res)=>{
         },
         {
             $sort:{
-                [sortBy]:sortType === "asc"? 1:-1
+                createdAt:sortType === "asc"? 1:-1
             }
         },
         {
@@ -181,10 +181,11 @@ const getUserVideos = asyncHandler(async(req,res)=>{
                 title: 1,
                 duration: 1,
                 views: 1,
-                isPublished: 1,
+                ispublished: 1,
             }
         }
     ])
+
 
     if(!videos){
         throw new ApiError(404," error while fetching video")
@@ -507,7 +508,7 @@ const togglePublishStatus = asyncHandler(async(req,res)=>{
     const updatedVideo = await Video.findByIdAndUpdate(
         videoId,
         {
-            $set: { isPublished: !video?.isPublished },
+            $set: { ispublished: !video?.ispublished },
         },
         {
             new: true,
@@ -526,7 +527,10 @@ const getSubscribedVideos = asyncHandler(async (req, res) => {
         subscriber: new mongoose.Types.ObjectId(req.user?._id),
     }).select("channel");
 
+    console.log("subscriptions",subscriptions)
+
     const channelIds = subscriptions.map((sub) => sub.channel);
+    console.log("channelIds",channelIds)
 
     if (channelIds.length === 0) {
         return res
@@ -545,7 +549,7 @@ const getSubscribedVideos = asyncHandler(async (req, res) => {
             },
         },
         {
-            $match: { isPublished: true },
+            $match: { ispublished: true },
         },
         {
             $sort: {
@@ -593,10 +597,11 @@ const getSubscribedVideos = asyncHandler(async (req, res) => {
                 title: 1,
                 duration: 1,
                 views: 1,
-                isPublished: 1,
+                ispublished: 1,
             },
         },
     ]);
+    console.log("videeos",videos)
 
     if (!videos) {
         throw new ApiError(404, "Error while fetching videos");

@@ -133,7 +133,7 @@ const getSubscribedChannels = asyncHandler(async(req,res)=>{
             }
         },
         {
-            $unwind:"channelDetails"
+            $unwind:"$channelDetails"
         },
         {
             $lookup:{
@@ -182,6 +182,7 @@ const getSubscribedChannels = asyncHandler(async(req,res)=>{
             }
         }
     ])
+    console.log(SubscribedChannels)
 
     if(!SubscribedChannels){
         throw new ApiError(500,"channels not found")

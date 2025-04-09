@@ -12,45 +12,47 @@ const getChannelStats = asyncHandler(async(req,res)=>{
     if(!userId || !isValidObjectId(userId)){
         throw new ApiError(400,"invalid user id")
     }
+console.log(userId)
+const videoStats = await Video.aggregate([
+    {
+        $match: {
+            owner: new mongoose.Types.ObjectId(userId),
+        },
+    },
+    {
+        $lookup: {
+            from: "likes",
+            localField: "_id",
+            foreignField: "video",
+            as: "likes",
+        },
+    },
+    {
+        $project: {
+            likesCount: {
+                $size: "$likes",
+            },
+            viewsCount: "$views",
+            totalVideos: 1,
+        },
+    },
+    {
+        $group: {
+            _id: null,
+            totalLikesCnt: {
+                $sum: "$likesCount",
+            },
+            totalViewsCnt: {
+                $sum: "$viewsCount",
+            },
+            totalVideos: {
+                $sum: 1,
+            },
+        },
+    },
+]);
 
-    const videoStats =await Video.aggregate([
-        {
-            $match:{
-                owner: new mongoose.Types.ObjectId(userId)
-            }
-        },
-        {
-            $lookup:{
-                from:"likes",
-                localField:"_id",
-                foreignField:"video",
-                as:"likes",
-            }
-        },
-        {
-            $project:{
-                likesCount:{
-                    $sum:"$likes"
-                },
-                viewsCount:"$views",
-                totaVideos:1
-            }
-        },
-        {
-            $group:{
-                _id:null,
-                totalLikesCnt:{
-                    $sum:"$likesCount"
-                },
-                totalViewsCnt:{
-                    $sum:"$viewsCount"
-                },
-                totalVideos:{
-                    $sum:1
-                }
-            }
-        }
-    ])
+    console.log(videoStats)
 
 
     const SubscriberStats = await Subscription.aggregate([
@@ -84,16 +86,16 @@ const getChannelStats = asyncHandler(async(req,res)=>{
             }
         }
     ])
-console.log(SubscriberStats)
+
     if(!videoStats && SubscriberStats && tweetStats){
         throw new ApiError(500,"failed to fetch channel data")
     }
 
     const stats= {
-        subscriberCount: SubscriberStats[0].subscriberCnt ||0,
-        totalVideos : videoStats[0].totaVideos ||0,
-        totalViews : videoStats[0].totalViewsCnt ||0,
-        totalLikes : videoStats[0].totalLikesCnt ||0,
+        subscriberCount: SubscriberStats[0]?.subscriberCnt ||0,
+        totalVideos : videoStats[0]?.totalVideos ||0,
+        totalViews : videoStats[0]?.totalViewsCnt ||0,
+        totalLikes : videoStats[0]?.totalLikesCnt ||0,
         totalTweets : tweetStats[0].tweetCnt ||0
     }
 
@@ -106,16 +108,23 @@ const getChannelVideos = asyncHandler(async(req,res)=>{
     const videos = await Video.aggregate([
         {
             $match:{
-                owner: req.user?._id
+                owner: new mongoose.Types.ObjectId(req.user?._id)
             }
         },
         {
             $lookup:{
                 from:"likes",
                 localField:"_id",
-                foreignField:"videos",
+                foreignField:"video",
                 as:"likes"
             }
+        },
+        {
+            $addFields: {
+                likesCount: {
+                    $size: "$likes",
+                },
+            },
         },
         {
             $lookup:{
@@ -126,28 +135,25 @@ const getChannelVideos = asyncHandler(async(req,res)=>{
             }
         },
         {
-            $addFields:{
-                likesCount:{
-                    $sum:"$likes"
+            $addFields: {
+                commentsCount: {
+                    $size: "$comments",
                 },
-                commentsCount:{
-                    $sum:"$comments"
-                }
-            }
+            },
         },
         {
-            $project:{
-                _id:1,
-                videoFile:1,
-                ispublished:1,
-                thumbnail:1,
-                likesCount:1,
-                commentsCount:1,
-                description:1,
-                title:1,
-                views:1,
-                createdAt:1
-            }
+            $project: {
+                _id: 1,
+                videoFile: 1,
+                ispublished: 1,
+                thumbnail: 1,
+                likesCount: 1,
+                commentsCount: 1,
+                createdAt: 1,
+                description: 1,
+                title: 1,
+                views: 1,
+            },
         }
     ])
 

@@ -30,11 +30,13 @@ const updateTweet = asyncHandler(async (req,res)=>{
     const {tweetId}= req.params;
     const {content} = req.body;
 
+    console.log("tweet id",tweetId)
+
     if(!content.trim()){
         throw new ApiError(400,"content cannot be empty")
     }
 
-    if(!tweetId ||!isValidObjectId(tweeId)){
+    if(!tweetId ||!isValidObjectId(tweetId)){
         throw new ApiError(400,"tweet id is noty valid")
     }
 
@@ -62,6 +64,7 @@ const updateTweet = asyncHandler(async (req,res)=>{
     if(!updatedtweet){
         throw new ApiError(500,"error file updating tweet")
     }
+    console.log(updatedtweet)
 
     const tweetWithDetails = await Tweet.aggregate([
         {
@@ -95,7 +98,7 @@ const updateTweet = asyncHandler(async (req,res)=>{
             }
         },
         {
-            lookup:{
+            $lookup:{
                 from:"likes",
                 localField:"_id",
                 foreignField:"tweet",
@@ -168,7 +171,7 @@ const deleteTweet = asyncHandler(async(req,res)=>{
 const getUserTweets = asyncHandler(async(req,res)=>{
     const {userId} = req.params
     const {page=1,limit=30} = req.query
-
+console.log(userId)
     if(!userId || !isValidObjectId(userId)){
         throw new ApiError(400,"no valid user found")
     }
@@ -226,7 +229,7 @@ const getUserTweets = asyncHandler(async(req,res)=>{
         {
             $addFields:{
                 likesCount:{
-                    $size:"$owner"
+                    $sum:"$owner"
                 },
                 isliked:{
                     $cond:{
