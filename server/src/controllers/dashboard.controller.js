@@ -12,7 +12,10 @@ const getChannelStats = asyncHandler(async(req,res)=>{
     if(!userId || !isValidObjectId(userId)){
         throw new ApiError(400,"invalid user id")
     }
-console.log(userId)
+    console.log(userId)
+    
+    
+
 const videoStats = await Video.aggregate([
     {
         $match: {
@@ -71,21 +74,21 @@ const videoStats = await Video.aggregate([
         }
     ])
 
-    const tweetStats = await Tweet.aggregate([
-        {
-            $match:{
-                owner: new mongoose.Types.ObjectId(userId)
-            }
-        },
-        {
-            $group:{
-                _id:null,
-                tweetCnt:{
-                    $sum:1
-                }
-            }
-        }
-    ])
+    // const tweetStats = await Tweet.aggregate([
+    //     {
+    //         $match:{
+    //             owner: new mongoose.Types.ObjectId(userId)
+    //         }
+    //     },
+    //     {
+    //         $group:{
+    //             _id:null,
+    //             tweetCnt:{
+    //                 $sum:1
+    //             }
+    //         }
+    //     }
+    // ])
 
     if(!videoStats && SubscriberStats && tweetStats){
         throw new ApiError(500,"failed to fetch channel data")
@@ -96,7 +99,7 @@ const videoStats = await Video.aggregate([
         totalVideos : videoStats[0]?.totalVideos ||0,
         totalViews : videoStats[0]?.totalViewsCnt ||0,
         totalLikes : videoStats[0]?.totalLikesCnt ||0,
-        totalTweets : tweetStats[0].tweetCnt ||0
+        // totalTweets : tweetStats[0].tweetCnt ||0
     }
 
     return res.status(200)

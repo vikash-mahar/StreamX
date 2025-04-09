@@ -370,15 +370,24 @@ const getVideoById = asyncHandler(async(req,res)=>{
 const updateVideo = asyncHandler(async(req,res)=>{
     const {title, description}= req.body
     const videoId = req.params
-    const thumbnailLocalPath = rea.files?.path
+    const thumbnailLocalPath = req.files?.path
+
+    const unLinkPath = (filePath) => {
+        if (filePath) {
+            const fs = require('fs');
+            fs.unlinkSync(filePath);
+        }
+    }
+
+    console.log("videoid",videoId)
 
     if(!videoId ||!isValidObjectId(videoId)){
-        unLinkPath(null,thumbnailLocalPath)
+        unLinkPath(thumbnailLocalPath)
         throw new ApiError(401," invalid video id ")
     }
 
     if(!title && !description &&!thumbnailLocalPath){
-        unLinkPath(null,thumbnailLocalPath)
+        unLinkPath(thumbnailLocalPath)
         throw new ApiError(401,"atleat one field is required")
     }
 
@@ -389,7 +398,7 @@ const updateVideo = asyncHandler(async(req,res)=>{
     }
 
     if(req.user?._id.toString() !== video?.owner.toString()){
-        unLinkPath(null, thumbnailLocalPath)
+        unLinkPath(thumbnailLocalPath)
         throw new ApiError(400,"you do not have to perform this activity")
     }
 
@@ -451,7 +460,7 @@ const deleteVideo = asyncHandler(async(req,res)=>{
         throw new ApiError(400,"you don't have to delete this video")
     }
 
-    await video.findByIdAndDelete(videoId)
+    await Video.findByIdAndDelete(videoId)
 
     const thumbnailUrl = video?.thumbnail
     const videoFileUrl = video?.videoFile
