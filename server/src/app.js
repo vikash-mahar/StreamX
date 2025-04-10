@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser'
 const app=express()
 
 app.use(cors({
-    origin:["http://localhost:5173",
+    origin:[
     "https://github.com/Sameer0820/Video-Streaming-App/tree/main"],
     methods: ['GET', 'POST', 'PUT', 'DELETE','PATCH'],
     credentials:true
