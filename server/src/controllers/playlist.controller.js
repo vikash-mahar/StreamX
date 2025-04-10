@@ -417,7 +417,7 @@ const getVideoPlaylist = asyncHandler(async(req,res)=>{
     ])
 
     if(!playlists){
-        throw new ApiError(500,"error while fetching playlist")
+        throw new ApiError(500,"while fetching playlist")
     }
 
     return res.status(200)
