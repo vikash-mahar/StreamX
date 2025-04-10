@@ -12,7 +12,6 @@
 
 ## 🛠️ Technologies Used
 -   **Frontend**:
-
     -   React
     -   Redux Toolkit
     -   Tailwind CSS
