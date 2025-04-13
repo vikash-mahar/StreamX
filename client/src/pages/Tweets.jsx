@@ -104,7 +104,7 @@ function Tweets() {
         <>
             <form
                 onSubmit={handleSubmit(addTweet)}
-                className="mt-4 border pb-2 rounded-lg mx-4"
+                className="mt-4 border-1 border-gray-400 pb-2 rounded-lg mx-4"
             >
                 <textarea
                     className="mb-2 w-full resize-none border-none bg-transparent px-3 pt-2 outline-none"
@@ -134,7 +134,7 @@ function Tweets() {
                     </div>
                     <div className="flex items-center gap-x-3">
                         <Button
-                            className="rounded-lg hover:bg-slate-800"
+                            className="rounded-lg hover:bg-slate-800 rounded-xl"
                             bgColor=""
                             onClick={() => reset()}
                         >
@@ -142,7 +142,7 @@ function Tweets() {
                         </Button>
                         <Button
                             type="submit"
-                            className="font-semibold hover:bg-pink-700 rounded-lg"
+                            className="font-semibold bg-[#004D61] hover:bg-[#1e424b] rounded-xl"
                             bgColor="bg-pink-600"
                         >
                             Add
@@ -168,7 +168,7 @@ function Tweets() {
                     }
                     scrollableTarget="scrollableDiv"
                 >
-                    <ul className="py-4 px-4">
+                    <ul className="py-4 px-4 text-gray-300">
                         {tweets.map((tweet, i) => (
                             <Tweet key={i} tweet={tweet} page={true} />
                         ))}

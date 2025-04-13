@@ -75,19 +75,19 @@ function Channel() {
     }
 
     return profile ? (
-        <section className="relative w-full pb-[70px] sm:ml-[70px] sm:pb-0 lg:ml-0">
-            <div className="relative min-h-[150px] w-full pt-[20%]">
-                <div className="absolute inset-0 overflow-hidden w-full">
+        <section className="relative w-full pb-[70px] ">
+            <div className="relative min-h-[150px] w-full mt-4 pt-[20%]">
+                <div className="absolute inset-0 overflow-hidden mx-20  rounded-4xl  ">
                     <img
                         src={profile?.coverImage || streamify_cover}
                         alt="user"
-                        className="object-cover w-full"
+                        className="object-cover w-full  "
                     />
                 </div>
             </div>
 
-            <div className="px-4 pb-4">
-                <div className="flex flex-wrap gap-4 pb-4 pt-6">
+            <div className="px-4 pb-4 ">
+                <div className="flex flex-wrap  gap-4 pb-4 pt-6">
                     <div className="relative -mt-12 inline-block h-32 w-32 shrink-0 overflow-hidden rounded-full border-2">
                         <img
                             src={profile?.avatar}
@@ -96,7 +96,7 @@ function Channel() {
                         />
                     </div>
                     <div className="mr-auto inline-block">
-                        <h1 className="font-bold text-xl">
+                        <h1 className="font-bold text-gray-200 text-xl">
                             {profile?.fullName}
                         </h1>
                         <p className="text-sm text-gray-400">
@@ -112,7 +112,7 @@ function Channel() {
                             userData?.username === profile?.username ? (
                                 <Button
                                     onClick={() => navigate("/settings")}
-                                    className="mr-1 flex items-center font-semibold transition-all duration-150 ease-in-out active:translate-x-[5px] active:translate-y-[5px] rounded-md hover:bg-pink-600"
+                                    className="mr-1 flex items-center border-1 border-gray-700 font-semibold transition-all duration-150 ease-in-out active:translate-x-[5px] active:translate-y-[5px] rounded-xl hover:bg-pink-600"
                                     bgColor="bg-pink-700"
                                 >
                                     <MdOutlineEdit />
@@ -121,15 +121,15 @@ function Channel() {
                             ) : (
                                 <Button
                                     onClick={toggleSubscribe}
-                                    className={`flex items-center px-2 rounded-lg ${
+                                    className={`flex items-center px-2 rounded-xl border-gray-800 border-1  text-gray-200 ${
                                         profile?.isSubscribed
-                                            ? "hover:bg-pink-700"
-                                            : "hover:bg-gray-300"
+                                            ? "bg-pink-700"
+                                            : "hover:bg-gray-900"
                                     }`}
                                     textColor="text-black"
                                     bgColor={
                                         profile?.isSubscribed
-                                            ? "bg-pink-600"
+                                            ? "bg-pink-700"
                                             : "bg-gray-100"
                                     }
                                 >
@@ -161,8 +161,8 @@ function Channel() {
                                     onClick={() => {
                                         LoginPopupDialog.current.open();
                                     }}
-                                    className="flex items-center rounded-lg hover:bg-pink-700"
-                                    bgColor="bg-pink-600"
+                                    className="flex items-center rounded-lg bg-pink-700"
+                                    bgColor="bg-pink-700"
                                     textColor="text-black"
                                 >
                                     <p className="mr-2 font-semibold">
@@ -174,62 +174,62 @@ function Channel() {
                         )}
                     </div>
                 </div>
-                <ul className="no-scrollbar sticky top-0 bg-zinc-950 z-[2] flex flex-row gap-x-2 overflow-auto border-b-2 border-gray-400 py-2">
-                    <li className="w-full">
+                <ul className="no-scrollbar sticky top-0  z-[2] flex flex-row justify-start gap-x-5 overflow-auto border-b-1 border-gray-700 py-1">
+                    <li className="">
                         <NavLink
                             to=""
                             end
                             className={({ isActive }) =>
                                 isActive
-                                    ? "w-full border-b-2 border-[#e14bc8] text-[#e14bc8] bg-white px-2 py-1"
-                                    : "w-full border-b-2 border-transparent text-gray-400 px-2 py-1"
+                                    ? "w-full border-b-2 border-gray-100 text-gray-100  px-2 py-1"
+                                    : "w-full border-b-2 border-transparent text-gray-500 px-2 py-1"
                             }
                         >
                             <button className="w-full">Videos</button>
                         </NavLink>
                     </li>
-                    <li className="w-full">
+                    <li className="">
                         <NavLink
                             to={"playlist"}
                             className={({ isActive }) =>
                                 isActive
-                                    ? "w-full border-b-2 border-[#e14bc8] text-[#e14bc8] bg-white px-2 py-1"
+                                    ? "w-full border-b-2 border-gray-100 text-gray-100  px-2 py-1"
                                     : "w-full border-b-2 border-transparent text-gray-400 px-2 py-1"
                             }
                         >
                             <button className="w-full">Playlist</button>
                         </NavLink>
                     </li>
-                    <li className="w-full">
+                    <li className="">
                         <NavLink
                             to={"tweets"}
                             className={({ isActive }) =>
                                 isActive
-                                    ? "w-full border-b-2 border-[#e14bc8] text-[#e14bc8] bg-white px-2 py-1"
+                                    ? "w-full border-b-2 border-gray-100 text-gray-100 px-2 py-1"
                                     : "w-full border-b-2 border-transparent text-gray-400 px-2 py-1"
                             }
                         >
                             <button className="w-full">Tweets</button>
                         </NavLink>
                     </li>
-                    <li className="w-full">
+                    <li className="">
                         <NavLink
                             to={"subscribed"}
                             className={({ isActive }) =>
                                 isActive
-                                    ? "w-full border-b-2 border-[#e14bc8] text-[#e14bc8] bg-white px-2 py-1"
+                                    ? "w-full border-b-2 border-gray-100 text-gray-100 px-2 py-1"
                                     : "w-full border-b-2 border-transparent text-gray-400 px-2 py-1"
                             }
                         >
                             <button className="w-full">Subscribed</button>
                         </NavLink>
                     </li>
-                    <li className="w-full">
+                    <li className="">
                         <NavLink
                             to={"about"}
                             className={({ isActive }) =>
                                 isActive
-                                    ? "w-full border-b-2 border-[#e14bc8] text-[#e14bc8] bg-white px-2 py-1"
+                                    ? "w-full border-b-2 border-gray-100 text-gray-100 px-2 py-1"
                                     : "w-full border-b-2 border-transparent text-gray-400 px-2 py-1"
                             }
                         >

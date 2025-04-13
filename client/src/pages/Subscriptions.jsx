@@ -7,6 +7,7 @@ import GuestSubscriptions from "../components/GuestPages/GuestSubscriptions";
 import GuestComponent from "../components/GuestPages/GuestComponent";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { icons } from "../assets/Icons.jsx";
+import Navbar from "../components/Navbar/Navbar.jsx";
 
 function Subscriptions() {
     const [videos, setVideos] = useState([]);
@@ -73,7 +74,7 @@ function Subscriptions() {
     }
 
     return (
-        <div className="overflow-auto">
+        <div className="overflow-auto"><Navbar/>
             <InfiniteScroll
                 dataLength={videos.length}
                 next={fetchMoreData}

@@ -45,15 +45,12 @@ function AboutChannel() {
     }
 
     return (
-        <div className="text-white px-6 py-4">
-            <div className="flex items-center mb-4">
-                <h2 className="text-3xl font-semibold">@{username}</h2>
-            </div>
-            <div className="mb-4">
+        <div className="text-gray-200 px-6 py-2">
+            <div className="mb-2">
                 <p className="ml-1">{user.description}</p>
             </div>
-            <div className="mb-6">
-                <h3 className="text-2xl font-semibold mb-3">Channel Details</h3>
+            <div className="">
+                <h3 className="text-2xl font-semibold mb-3">Channel Details:</h3>
                 <p className="ml-1 mb-[6px] flex items-center gap-2">
                     <MdOutlineEmail className="w-6 h-6" />
                     <a

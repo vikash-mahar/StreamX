@@ -14,6 +14,8 @@ import { FaRegUserCircle } from "react-icons/fa";
 import axiosInstance from "../utils/axios.helper";
 import { unSetUser } from "../store/authSlice";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import Logo from "./Logo"
 
 function Sidebar() {
     const authStatus = useSelector((state) => state.auth.status);
@@ -71,24 +73,29 @@ function Sidebar() {
 
     return (
         <div
-            className={`bg-black text-white h-full flex flex-col border border-y-0 border-l-0 transition-all duration-100 ease-in-out  ${
+            className={` text-white bg-[#0f0e0e] mr-1 justify-start h-full flex flex-col border-1 border-gray-700 border-y-0 border-l-0 transition-all duration-100 ease-in-out  ${
                 isWatchPage ? "w-16" : "w-64"
             }`}
         >
+    <Link to="/" className="pr-2 pl-4 py-2">
+        <Logo />
+    </Link>
             <ul className="flex-grow px-2 py-2">
                 {NavElements.map((item, index) => (
                     <NavLink
                         className={({ isActive }) =>
-                            `${isActive ? "text-pink-700" : "text-gray-200"}`
+                            `${isActive ? "text-[#004D61] " : "text-gray-300 "}`
                         }
                         to={item.route}
                         key={index}
                     >
                         <li
-                            className={`py-2 hover:bg-gray-800 transition-all duration-100 cursor-pointer flex items-center rounded-lg ${
-                                isWatchPage ? "justify-center " : " px-5"
+                            className={`py-2 hover:bg-gray-900 transition-all duration-100 cursor-pointer flex justify-between items-center rounded-xl ${
+                                isWatchPage ? "justify-center " : " pr-2 pl-4 "
                             }`}
                         >
+                            
+                            {!isWatchPage && <div>{item.name}</div>}
                             {item.icon && (
                                 <span
                                     className={`${isWatchPage ? "" : "mr-2"}`}
@@ -96,26 +103,26 @@ function Sidebar() {
                                     {item.icon}
                                 </span>
                             )}
-                            {!isWatchPage && <div>{item.name}</div>}
                         </li>
                     </NavLink>
                 ))}
                 {authStatus && (
                     <NavLink
                         className={({ isActive }) =>
-                            `${isActive ? "text-pink-700" : "text-gray-200"}`
+                            `${isActive ? "text-[#004D61]" : "text-gray-300"}`
                         }
                         to="/admin/dashboard"
                     >
                         <li
-                            className={`py-2 hover:bg-gray-800 transition-all duration-100 cursor-pointer flex items-center rounded-lg ${
-                                isWatchPage ? "justify-center " : " px-5"
+                            className={`py-2 hover:bg-gray-800 transition-all duration-100 cursor-pointer flex justify-between items-center rounded-lg ${
+                                isWatchPage ? "justify-center " : " pr-2 pl-4 "
                             }`}
                         >
+                            
+                            {!isWatchPage && "Dashboard"}
                             <span className={`${isWatchPage ? "" : "mr-2"}`}>
                                 <FaRegUserCircle className="w-6 h-6" />
                             </span>
-                            {!isWatchPage && "Dashboard"}
                         </li>
                     </NavLink>
                 )}
@@ -137,7 +144,7 @@ function Sidebar() {
                 {authStatus && (
                     <NavLink
                         className={({ isActive }) =>
-                            `${isActive ? "text-pink-700" : "text-gray-200"}`
+                            `${isActive ? "text-pink-700" : "text-gray-200"} `
                         }
                         to="/settings"
                     >
@@ -150,6 +157,7 @@ function Sidebar() {
                                 <FiSettings className="w-6 h-6" />
                             </span>
                             {!isWatchPage && "Settings"}
+                            
                         </li>
                     </NavLink>
                 )}

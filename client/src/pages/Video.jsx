@@ -10,6 +10,7 @@ import Comments from "../components/Comments.jsx";
 import GuestComponent from "../components/GuestPages/GuestComponent.jsx";
 import { IoPlayCircleOutline } from "react-icons/io5";
 import { icons } from "../assets/Icons.jsx";
+import GuestVideoPage from "../components/GuestPages/GuestVideoPage.jsx";
 
 function Video() {
     const dispatch = useDispatch();
@@ -29,16 +30,7 @@ function Video() {
             }
         } catch (error) {
             setError(
-                <GuestComponent
-                    title="Video does not exist"
-                    subtitle="There is no video present for given videoId. It may have been moved or deleted."
-                    icon={
-                        <span className="w-full h-full flex items-center p-4">
-                            <IoPlayCircleOutline className="w-28 h-28" />
-                        </span>
-                    }
-                    guest={false}
-                />
+                <GuestVideoPage/>
             );
             console.log(error);
         } finally {

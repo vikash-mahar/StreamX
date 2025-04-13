@@ -43,7 +43,7 @@ function ChannelSubscribed() {
 
     return data?.channelsCount > 0 ? (
         <ul className="flex w-full flex-col gap-y-4 py-4">
-            <div className="relative mb-2 rounded-full bg-zinc-800 border py-2 pl-8 pr-3 ">
+            {/* <div className="relative mb-2 rounded-full bg-zinc-800 border py-2 pl-8 pr-3 ">
                 <span className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400">
                     <GoSearch />
                 </span>
@@ -52,7 +52,7 @@ function ChannelSubscribed() {
                     className="w-full bg-transparent outline-none"
                     placeholder="Search"
                 />
-            </div>
+            </div> */}
             {subscribed?.map((profile) => (
                 <SubscriptionCard key={profile._id} profile={profile} />
             ))}

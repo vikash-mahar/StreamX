@@ -7,6 +7,7 @@ function VideoCard({ video, name = true }) {
     const formattedDuration = formatDuration(parseInt(video?.duration));
     const timeDistance = getTimeDistanceToNow(video?.createdAt);
     const navigate = useNavigate();
+    
 
     const handleChannelClick = (e) => {
         e.preventDefault();

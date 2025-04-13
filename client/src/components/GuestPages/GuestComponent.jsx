@@ -32,7 +32,7 @@ function GuestComponent({
                             />
                             <button
                                 onClick={() => LoginPopupDialog.current.open()}
-                                className="mt-4 inline-flex items-center gap-x-2 hover:bg-pink-600 rounded bg-pink-700 hover:border-dotted border border-transparent hover:border-white px-3 py-2 font-semibold text-black"
+                                className="mt-4 inline-flex items-center gap-x-2 hover:bg-[#1e424b] bg-[#004D61] rounded  hover:border-dotted border border-transparent hover:border-white px-3 py-2 font-semibold text-black"
                             >
                                 <span className="w-5">
                                     <GrLogin />

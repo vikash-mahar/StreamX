@@ -18,7 +18,7 @@ function ChannelEmptyPlaylist({ videos = false }) {
             <div className="flex justify-center p-4">
                 <div className="w-full max-w-sm text-center mt-6">
                     <p className="mb-3 w-full">
-                        <span className="inline-flex rounded-full bg-pink-500 p-2">
+                        <span className="inline-flex rounded-full bg-pink-700  p-2">
                             <FaRegFolderOpen className="w-6 h-6" />
                         </span>
                     </p>
@@ -34,7 +34,7 @@ function ChannelEmptyPlaylist({ videos = false }) {
                     {!videos && (
                         <button
                             onClick={playlistPopup}
-                            className="mt-4 inline-flex items-center gap-x-2 bg-pink-500 hover:bg-pink-500/90 border border-transparent rounded-lg hover:border-white px-3 py-1.5 font-semibold text-black"
+                            className="mt-4 inline-flex items-center gap-x-2 bg-pink-700 hover:bg-pink-500/90 border border-transparent rounded-lg hover:border-white px-3 py-1.5 font-semibold text-black"
                         >
                             <IoAdd className="w-5 h-5" />
                             New Playlist

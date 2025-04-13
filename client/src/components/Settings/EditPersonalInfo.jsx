@@ -39,17 +39,17 @@ function EditPersonalInfo() {
     };
 
     return (
-        <div className="flex flex-wrap justify-center gap-y-4 py-4">
+        <div className="flex flex-wrap text-gray-200 justify-center gap-y-4 py-4">
             <div className="w-full sm:w-1/2 lg:w-1/3">
-                <h5 className="font-semibold">Personal Info</h5>
-                <p className="text-gray-300">
+                <p className="font-semibold text-xl">Personal Info</p>
+                <p className="text-gray-400 text-sm">
                     Update your photo and personal details.
                 </p>
             </div>
             <div className="w-full sm:w-1/2 lg:w-2/3">
                 <form
                     onSubmit={handleSubmit(handleSaveChange)}
-                    className="rounded-lg border"
+                    className="rounded-xl border-1 border-gray-500"
                 >
                     <div className="w-full px-4 py-2">
                         <label htmlFor="fullname" className="mb-1 inline-block">
@@ -58,7 +58,7 @@ function EditPersonalInfo() {
                         <input
                             type="text"
                             id="fullname"
-                            className="w-full px-2 py-1.5 border rounded-lg bg-transparent"
+                            className="w-full px-2 py-1.5 border-1 border-gray-800 rounded-xl bg-transparent"
                             placeholder="Enter your full name"
                             required
                             defaultValue={userData.fullName}
@@ -96,7 +96,7 @@ function EditPersonalInfo() {
                                 placeholder="Enter your email address"
                                 type="email"
                                 id="email"
-                                className="w-full pr-2 py-1.5 pl-10 border rounded-lg bg-transparent"
+                                className="w-full pr-2 py-1.5 pl-10 border-1 border-gray-800 rounded-xl  bg-transparent"
                                 required
                                 defaultValue={userData.email}
                                 {...register("email", {
@@ -123,7 +123,7 @@ function EditPersonalInfo() {
                             </p>
                         )}
                     </div>
-                    <hr className="border border-gray-300 mt-2" />
+                    <hr className="border border-gray-600 mt-2" />
                     <div className="flex items-center justify-end gap-4 p-4">
                         <Button
                             onClick={() => {
@@ -134,7 +134,7 @@ function EditPersonalInfo() {
                                 JSON.stringify(data) ===
                                 JSON.stringify(defaultValues)
                             }
-                            className="inline-block rounded-lg border hover:bg-white/10 disabled:cursor-not-allowed"
+                            className="inline-block rounded-xl border-gray-600 border-1 hover:bg-white/10 disabled:cursor-not-allowed"
                         >
                             Cancel
                         </Button>
@@ -144,7 +144,7 @@ function EditPersonalInfo() {
                                 JSON.stringify(data) ===
                                 JSON.stringify(defaultValues)
                             }
-                            className="inline-block rounded-lg font-semibold hover:bg-pink-600 disabled:cursor-not-allowed"
+                            className="inline-block rounded-xl bg-gray-950 text-white border-1 border-gray-700 font-semibold hover:bg-pink-600 disabled:cursor-not-allowed"
                             bgColor="bg-pink-700"
                             textColor="text-black"
                         >

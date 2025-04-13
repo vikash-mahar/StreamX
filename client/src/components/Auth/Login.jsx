@@ -9,6 +9,7 @@ import Input from "../Input";
 import Button from "../Button";
 import { icons } from "../../assets/Icons.jsx";
 import axiosInstance from "../../utils/axios.helper.js";
+import bg from "../../assets/bg.jpg"
 
 function Login() {
     const dispatch = useDispatch();
@@ -52,9 +53,10 @@ function Login() {
     };
 
     return (
-        <div className="h-screen w-full overflow-y-auto bg-[#121212] text-white">
-            <div className="mx-auto my-28 flex w-full max-w-sm flex-col px-4">
-                <div className="mx-auto inline-block">
+        <div className="h-screen relative w-full overflow-y-auto  text-white" >
+            <img src={`${bg}`}></img>
+            <div className="items-center border-5 border-zinc-950 justify-center absolute w-screen md:w-1/2 h-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 backdrop-blur-sm flex flex-col  ">
+                <div className=" inline-block">
                     <Link to="/">
                         <Logo />
                     </Link>
@@ -70,7 +72,7 @@ function Login() {
                     className="mx-auto mt-2 flex w-full max-w-sm flex-col px-4"
                 >
                     <Input
-                        label="Email Address"
+                        label="Email Address:"
                         placeholder="Enter your email"
                         type="email"
                         className="px-2 rounded-lg"
@@ -97,7 +99,7 @@ function Login() {
                         </p>
                     )}
                     <Input
-                        label="Password"
+                        label="Password:"
                         className="px-2 rounded-lg"
                         className2="pt-5"
                         type="password"
@@ -115,8 +117,8 @@ function Login() {
                     <Button
                         type="submit"
                         disabled={loading}
-                        className="mt-5 disabled:cursor-not-allowed py-2 rounded-lg"
-                        bgColor={loading ? "bg-pink-800" : "bg-pink-600"}
+                        className="mt-5 bg-[#004D61] hover:bg-[#1e424b] disabled:cursor-not-allowed py-2 rounded-lg"
+                        
                     >
                         {loading ? <span>{icons.loading}</span> : "Sign in"}
                     </Button>
@@ -131,6 +133,7 @@ function Login() {
                     </Link>
                 </h6>
             </div>
+            
         </div>
     );
 }

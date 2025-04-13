@@ -178,13 +178,14 @@ function VideoInfo({ video }) {
     const playlists = useSelector((state) => state.playlists.playlists);
 
     return (
-        <div className="border rounded-xl px-4 py-2 ml-1 mt-2 bg-opacity-5">
+        <div className="border-gray-600 border-1 text-gray-300 rounded-xl px-4 py-2 ml-1 mt-2 bg-opacity-5">
             <div className="flex justify-between">
                 <div className="w-[80%]">
                     <h1 className="text-[1.3rem] font-semibold">
                         {video?.title}
                     </h1>
-                    <p className="text-[0.9rem] text-gray-300">{`${video?.views} views • ${timeDistance}`}</p>
+                    <p className="text-[0.9rem] text-gray-400">{`${video?.views} views • ${timeDistance}`}</p>
+                   
                 </div>
                 <div className="py-1 flex h-11">
                     <>
@@ -195,7 +196,7 @@ function VideoInfo({ video }) {
                         />
                         <button
                             onClick={toggleVideoLike}
-                            className={`px-3 border rounded-lg border-gray-400 flex items-center hover:bg-gray-900`}
+                            className={`px-3 border rounded-xl border-gray-700 flex items-center hover:bg-gray-900`}
                         >
                             <p className="mr-1">{video?.likesCount}</p>
                             {video.isLiked ? (
@@ -221,7 +222,7 @@ function VideoInfo({ video }) {
                                         LoginSavePopupDialog.current.open();
                                     }
                                 }}
-                                className="border rounded-lg border-gray-400 ml-2 flex items-center hover:bg-gray-900"
+                                className="border rounded-xl border-gray-700 ml-2 flex items-center hover:bg-gray-900"
                             >
                                 <FaSave className="mr-1" />
                                 Save
@@ -297,10 +298,10 @@ function VideoInfo({ video }) {
                             />
                         </Link>
                         <div>
-                            <p className="text-gray-100 text-[0.9rem]">
+                            <p className="text-gray-200 text-[0.9rem]">
                                 {video?.owner?.fullName}
                             </p>
-                            <p className="text-gray-300  text-[0.8rem]">
+                            <p className="text-red  text-[0.8rem]">
                                 {formatSubscription(
                                     video?.owner?.subscriberCount
                                 )}
@@ -316,10 +317,10 @@ function VideoInfo({ video }) {
                     />
                     <Button
                         onClick={toggleSubscribe}
-                        className={`flex h-10 items-center px-2 rounded-full ${
+                        className={`flex h-10 border-gray-800 border-1 hover:bg-gray-900 text-gray-200 items-center px-2 rounded-xl ${
                             video.owner.isSubscribed
-                                ? "hover:bg-pink-700"
-                                : "hover:bg-gray-300"
+                                ? "bg-pink-700"
+                                : ""
                         }`}
                         textColor="text-black"
                         bgColor={
@@ -342,10 +343,12 @@ function VideoInfo({ video }) {
                     </Button>
                 </>
             </div>
-            <div className="mt-4 border border-b-0 border-l-0 border-r-0 py-2 px-1 overflow-hidden flex justify-between">
-                <p className={`${showFullDescription ? "" : "line-clamp-1"}`}>
+            <div className="mt-4 w-full border-gray-600 border border-b-0 border-l-0 border-r-0 pt-4 px-1 overflow-hidden justify-between">
+            {/* <p className=" text-[0.9rem] text-gray-400">{`${video?.views} views • ${timeDistance}`}</p> */}
+                <p className={`${showFullDescription ? "" : "line-clamp-1"} pb-0`}>
                     {video.description ? video.description : "No description"}
                 </p>
+                
                 <button
                     onClick={toggleDescription}
                     className="text-white ml-auto flex items-end"

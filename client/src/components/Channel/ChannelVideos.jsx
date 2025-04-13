@@ -59,10 +59,10 @@ function ChannelVideos() {
                 <div className="flex mx-2">
                     <button
                         type="button"
-                        className={`px-3 py-1.5 mr-3 text-sm rounded-lg font-semibold ${
+                        className={`px-3 py-1.5 mr-3 text-sm rounded-xl font-semibold ${
                             sortType === "desc"
-                                ? "bg-pink-500 "
-                                : "bg-slate-700"
+                                ? "bg-pink-700 "
+                                : "bg-gray-950 border-1 border-gray-700"
                         }`}
                         onClick={() => {
                             setSortType("desc");
@@ -74,10 +74,10 @@ function ChannelVideos() {
                     </button>
                     <button
                         type="button"
-                        className={`px-3 py-1.5 text-sm rounded-lg font-semibold ${
+                        className={`px-3 py-1.5 text-sm rounded-xl font-semibold ${
                             sortType === "asc"
-                                ? "bg-pink-500 "
-                                : "bg-slate-700 "
+                                ? "bg-pink-700 "
+                                : "bg-gray-950 border-1 border-gray-700"
                         }`}
                         onClick={() => {
                             setSortType("asc");
@@ -89,7 +89,7 @@ function ChannelVideos() {
                     </button>
                 </div>
                 <div
-                    className={`grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-2 ${
+                    className={`grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))]  gap-2 ${
                         videos?.length < 4 &&
                         "sm:grid-cols-[repeat(auto-fit,_minmax(300px,0.34fr))] 2xl:grid-cols-[repeat(auto-fit,_minmax(300px,0.24fr))]"
                     }`}

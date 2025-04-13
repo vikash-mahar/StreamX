@@ -8,6 +8,7 @@ import GuestLikedVideos from "../components/GuestPages/GuestLikedVideos.jsx";
 import GuestComponent from "../components/GuestPages/GuestComponent.jsx";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { removeUserLikedVideos } from "../store/userSlice.js";
+import Navbar from "../components/Navbar/Navbar.jsx";
 
 function LikedVideos() {
     const [loading, setLoading] = useState(true);
@@ -42,6 +43,7 @@ function LikedVideos() {
 
     return (
         <>
+        <Navbar/>
             {loading && (
                 <span className="flex justify-center mt-20">
                     {icons.bigLoading}

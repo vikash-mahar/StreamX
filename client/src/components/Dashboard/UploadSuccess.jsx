@@ -42,7 +42,7 @@ function UploadSuccess({ video, updating = false }, ref) {
                                     <IoClose className="w-6 h-6" />
                                 </button>
                             </div>
-                            <div className="mb-4 flex gap-x-2 border p-3">
+                            <div className="mb-4 flex gap-x-2 border-1 border-gray-400 rounded-md p-3">
                                 <div className="shrink-0">
                                     <span className="inline-block w-full rounded-full bg-[#f8c3fa] p-1 text-pink-400">
                                         <TbMovie className="w-6 h-6" />
@@ -72,10 +72,10 @@ function UploadSuccess({ video, updating = false }, ref) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex justify-center items-center mx-auto">
+                            <div className="flex justify-center  items-center mx-auto">
                                     <button
                                         onClick={() => dialog.current.close()}
-                                         className="bg-pink-500 hover:border text-black font-semibold px-4 py-1.5"
+                                         className="bg-gray-800 text-gray-200 border-1 border-gray-700 hover:bg-pink-700 rounded-xl t font-semibold px-4 py-1.5"
                                     >
                                         Finish
                                     </button>

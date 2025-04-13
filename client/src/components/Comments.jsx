@@ -178,7 +178,7 @@ function Comments({ video }) {
 
     return (
         <>
-            <div className="border rounded-xl mt-4 ml-1">
+            <div className="border-1 border-gray-600 text-gray-300 rounded-xl mt-4 ml-1">
                 <div className="px-4 mt-2 rounded-xl">
                     <p className="mt-1 text-lg">
                         {Array.isArray(comments) && comments.length
@@ -208,7 +208,7 @@ function Comments({ video }) {
                         />
                         <Button
                             type="submit"
-                            className="ml-4 font-semibold border rounded-lg border-gray-300 flex items-center hover:bg-zinc-800"
+                            className="ml-4 font-semibold border rounded-xl border-gray-700 hover:bg-gray-900 flex items-center hover:bg-zinc-800"
                             bgColor=""
                         >
                             Comment

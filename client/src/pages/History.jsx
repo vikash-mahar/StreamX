@@ -8,6 +8,7 @@ import GuestComponent from "../components/GuestPages/GuestComponent.jsx";
 import GuestHistory from "../components/GuestPages/GuestHistory.jsx";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { removeUserHistory } from "../store/userSlice.js";
+import Navbar from "../components/Navbar/Navbar.jsx";
 
 function History() {
     const [loading, setLoading] = useState(true);
@@ -41,7 +42,7 @@ function History() {
     }
 
     return (
-        <>
+        <><Navbar/>
             {loading && (
                 <span className="flex justify-center mt-20">
                     {icons.bigLoading}

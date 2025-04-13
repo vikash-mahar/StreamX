@@ -32,8 +32,8 @@ function UploadingVideo({ video, updating = false }, ref) {
             <div className="relative flex min-h-[calc(100vh-66px)] sm:min-h-[calc(100vh-82px)]">
                 <div className="fixed inset-0 top-[calc(66px)] z-10 flex flex-col bg-black/50 px-4 pb-[86px] pt-4 sm:top-[calc(82px)] sm:px-14 sm:py-8">
                     <div className="absolute inset-x-0 top-0 z-10 flex h-[calc(100vh-66px)] items-center justify-center bg-black/50 px-4 pb-[86px] pt-4 sm:h-[calc(100vh-82px)] sm:px-14 sm:py-8">
-                        <div className="w-full max-w-lg overflow-auto rounded-lg border border-gray-700 bg-zinc-950 p-4">
-                            <div className="mb-4 flex items-start justify-between">
+                        <div className="w-full max-w-lg border-1 border-gray-700 overflow-auto rounded-xl  bg-zinc-950 p-4">
+                            <div className="mb-4 flex  items-start justify-between">
                                 <h2 className="text-xl font-semibold">
                                     {updating ? "Updating" : "Uploading"}{" "}
                                     Video...
@@ -52,7 +52,7 @@ function UploadingVideo({ video, updating = false }, ref) {
                                     <IoClose className="w-6 h-6" />
                                 </button>
                             </div>
-                            <div className="mb-6 flex gap-x-2 border p-3">
+                            <div className="mb-6 flex gap-x-2 border-1 rounded-md border-gray-400 text-gray-200 p-3">
                                 <div className="shrink-0">
                                     <span className="inline-block w-full rounded-full bg-[#f8c3fa] p-1 text-pink-400">
                                         <TbMovie className="w-6 h-6" />
@@ -85,7 +85,7 @@ function UploadingVideo({ video, updating = false }, ref) {
                                 <div className="flex justify-center items-center mx-auto">
                                     <button
                                         onClick={() => dialog.current.close()}
-                                         className="border px-4 py-2 hover:bg-gray-800"
+                                         className="border rounded-xl border-gray-700 text-gray-200 px-4 py-2 hover:bg-gray-900"
                                     >
                                         Close
                                     </button>

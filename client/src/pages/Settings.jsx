@@ -74,13 +74,13 @@ function Settings() {
     };
 
     return (
-        <section className="w-full">
-            <div className="relative min-h-[150px] w-full pt-[20%]">
-                <div className="absolute inset-0 overflow-hidden">
+        <section className=" w-full pb-[70px]">
+            <div className="relative min-h-[150px] mt-4 mx-20  pt-[30%]">
+                <div className="absolute inset-0 overflow-hidden  rounded-4xl ">
                     <img
                         src={userData.coverImage || streamify_cover}
                         alt="cover-image"
-                        className="object-cover"
+                        className="object-cover w-full"
                     />
                 </div>
                 <form
@@ -176,21 +176,21 @@ function Settings() {
                             onClick={() =>
                                 navigate(`/channel/${userData.username}`)
                             }
-                            className="mr-1 font-semibold transition-all duration-150 ease-in-out active:translate-x-[5px] active:translate-y-[5px] rounded-md hover:bg-pink-600"
+                            className="mr-1 text-gray-200 font-semibold transition-all border-1 border-gray-700 duration-150 ease-in-out active:translate-x-[5px] active:translate-y-[5px] rounded-xl hover:bg-pink-700"
                             bgColor="bg-pink-700"
                         >
                             View Channel
                         </Button>
                     </div>
                 </div>
-                <ul className="no-scrollbar sticky top-[66px] z-[2] flex flex-row gap-x-2 overflow-auto border-b-2 border-gray-400 py-2 sm:top-[82px]">
+                <ul className="no-scrollbar sticky top-[66px] z-[2] flex flex-row gap-x-2 overflow-auto border-b-1 border-gray-700 py-1  sm:top-[82px]">
                     <li key="personal-info" className="w-full">
                         <Button
                             onClick={() => setCurrentTab(0)}
                             className={`w-full border-b-2 transition-all duration-100 ${
                                 currentTab === 0
-                                    ? "border-[#e14bc8] text-[#e14bc8] bg-white"
-                                    : "border-transparent text-gray-400"
+                                    ? "w-full border-b-2 border-gray-100 text-gray-100  px-2 py-1"
+                                    : "w-full border-b-2 border-transparent text-gray-500 px-2 py-1"
                             }`}
                             bgColor=""
                             textColor=""
@@ -203,8 +203,8 @@ function Settings() {
                             onClick={() => setCurrentTab(1)}
                             className={`w-full border-b-2 transition-all duration-100 ${
                                 currentTab === 1
-                                    ? "border-[#e14bc8] text-[#e14bc8] bg-white"
-                                    : "border-transparent text-gray-400"
+                                    ? "w-full border-b-2 border-gray-100 text-gray-100  px-2 py-1"
+                                    : "w-full border-b-2 border-transparent text-gray-500 px-2 py-1"
                             }`}
                             bgColor=""
                             textColor=""
@@ -217,8 +217,8 @@ function Settings() {
                             onClick={() => setCurrentTab(2)}
                             className={`w-full border-b-2 transition-all duration-100 ${
                                 currentTab === 2
-                                    ? "border-[#e14bc8] text-[#e14bc8] bg-white"
-                                    : "border-transparent text-gray-400"
+                                    ? "w-full border-b-2 border-gray-100 text-gray-100  px-2 py-1"
+                                    : "w-full border-b-2 border-transparent text-gray-500 px-2 py-1"
                             }`}
                             bgColor=""
                             textColor=""

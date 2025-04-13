@@ -87,15 +87,15 @@ function LoginPopup({ route, message = "Login to continue..." }, ref) {
     };
 
     return (
-        <div className="absolute">
+        <div className="absolute ">
             {showPopup &&
                 createPortal(
                     <dialog
                         ref={dialog}
                         onClose={handleClose}
-                        className="mx-auto w-[90%] backdrop:backdrop-blur-sm sm:w-[60%] lg:w-[40%] xl:w-[30%] overflow-y-auto bg-gray-900/80 text-white"
+                        className="mx-auto my-auto p-6 border-4 border-zinc-900  backdrop:backdrop-blur-sm  overflow-y-auto bg-gray-900/80 text-white"
                     >
-                        <div className="mx-8 my-6 mb-8 flex flex-col relative">
+                        <div className="mx-8 my-6 mb-8 flex  flex-col relative">
                             <button
                                 autoFocus
                                 type="button"
@@ -130,7 +130,7 @@ function LoginPopup({ route, message = "Login to continue..." }, ref) {
                                     label="Email Address"
                                     placeholder="Enter your email"
                                     type="email"
-                                    className="px-2 rounded-lg"
+                                    className="px-2 rounded-lg "
                                     required
                                     {...register("email", {
                                         required: true,
@@ -156,7 +156,7 @@ function LoginPopup({ route, message = "Login to continue..." }, ref) {
                                 <Input
                                     label="Password"
                                     className="px-2 rounded-lg"
-                                    className2="pt-5"
+                                    className2="pt-5 "
                                     type="password"
                                     placeholder="Enter your password"
                                     required
@@ -172,10 +172,8 @@ function LoginPopup({ route, message = "Login to continue..." }, ref) {
                                 <Button
                                     type="submit"
                                     disabled={loading}
-                                    className="mt-6 disabled:cursor-not-allowed py-2 rounded-lg"
-                                    bgColor={
-                                        loading ? "bg-pink-800" : "bg-pink-600"
-                                    }
+                                    className="mt-6 disabled:cursor-not-allowed bg-[#004D61] hover:bg-[#1e424b] py-2 rounded-lg"
+                                    
                                 >
                                     {loading ? (
                                         <span>{icons.loading}</span>

@@ -6,19 +6,19 @@ function VideoPanel({ channelVideos }) {
     const [filter, setFilter] = useState(null);
 
     function handleUserInput(input) {
-        if (!input || input === "") setFilter(channelVideos);
-        else {
-            const filteredData = channelVideos?.filter((video) =>
-                video.title.toLowerCase().startsWith(input.toLowerCase().trim())
-            );
-            setFilter(filteredData);
-        }
+        // if (!input || input === "") setFilter(channelVideos);
+        // else {
+        //     const filteredData = channelVideos?.filter((video) =>
+        //         video.title.toLowerCase().startsWith(input.toLowerCase().trim())
+        //     );
+        //     setFilter(filteredData);
+        // }
     }
 
     let videos = filter || channelVideos;
     return (
         <>
-            <div className="relative w-full mb-2 rounded-full bg-zinc-800 border py-1 pl-8 pr-3 overflow-hidden">
+            {/* <div className="relative w-full mb-2 rounded-full bg-zinc-800 border py-1 pl-8 pr-3 overflow-hidden">
                 <span className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400">
                     <GoSearch />
                 </span>
@@ -27,11 +27,11 @@ function VideoPanel({ channelVideos }) {
                     className="w-full bg-transparent outline-none"
                     placeholder="Search"
                 />
-            </div>
+            </div> */}
 
             <div className="w-full overflow-auto">
-                <table className="w-full min-w-[1000px] border-collapse border text-white">
-                    <thead>
+                <table className="w-full min-w-[1000px]   border-collapse border text-gray-300">
+                    <thead >
                         <tr>
                             <th className="border-collapse border-b p-4">
                                 Toggle

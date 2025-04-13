@@ -41,7 +41,7 @@ function App() {
     }
     return (
         <div className="h-screen w-screen bg-black text-white flex flex-col bg-opacity-95">
-            <Navbar />
+            
             <div className="w-full h-full flex overflow-auto">
                 <div>
                     <Sidebar />

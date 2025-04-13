@@ -5,14 +5,14 @@ import logo from "../assets/logo.png";
 function Logo({ className = "" }) {
     return (
         <div
-            className={`font-bold text-xl flex items-center justify-center w-full ${className} text-[#FFFFFF]`}
+            className={`font-bold text-xl flex items-center w-full ${className} text-[#e7e7e7]`}
         >
             <img
                 src={`${logo}`}
                 alt="logo"
-                className="w-10 h-10 inline-block mr-2"
+                className="w-12 h-12 inline-block mr-2"
             />
-            <div>Streamify</div>
+            <div>StreamX</div>
         </div>
     );
 }

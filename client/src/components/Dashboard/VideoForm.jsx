@@ -112,12 +112,12 @@ function VideoForm({ video = false }, ref) {
     };
 
     return (
-        <div>
+        <div className="">
             {showPopup &&
                 createPortal(
                     <dialog
                         ref={dialog}
-                        className="h-fit backdrop:backdrop-blur-lg lg:w-[40%] md:w-2/3 items-center"
+                        className=" backdrop:backdrop-blur-lg "
                     >
                         <UploadingVideo
                             ref={uploadingDialog}
@@ -129,10 +129,10 @@ function VideoForm({ video = false }, ref) {
                             video={video || getValues()}
                             updating={video ? true : false}
                         />
-                        <div className="bg-black/85 p-2 text-white">
+                        <div className="bg-black/85 p-2  text-white">
                             <form
                                 onSubmit={handleSubmit(handleVideo)}
-                                className="h-fit border bg-zinc-950"
+                                className="h-fit border  bg-zinc-950"
                             >
                                 <div className="flex items-center justify-between border-b px-2 py-1 md:p-3">
                                     <h2 className="text-xl font-semibold">
@@ -149,10 +149,10 @@ function VideoForm({ video = false }, ref) {
                                     </button>
                                 </div>
 
-                                <div className="mx-auto flex w-full max-w-3xl flex-col gap-y-2 md:gap-y-3 p-4">
+                                <div className="mx-auto flex w-full  max-w-3xl flex-col gap-y-2 md:gap-y-3 p-4">
                                     {!video && (
                                         <>
-                                            <div className="w-full border-2 border-dotted px-2 py-5 text-center">
+                                            <div className="w-full border-2 border-dotted border-gray-700 px-2 py-5 text-center">
                                                 <span className="mb-2 inline-block rounded-full bg-[#f8c3fa] p-3 text-pink-500">
                                                     <BsUpload className="h-7 w-7" />
                                                 </span>
@@ -166,7 +166,7 @@ function VideoForm({ video = false }, ref) {
                                                 </p>
                                                 <label
                                                     htmlFor="upload-video"
-                                                    className="mt-3 inline-flex w-auto cursor-pointer items-center gap-x-2 bg-pink-500 px-3 py-2 text-sm text-center font-semibold text-black transition-all duration-150 ease-in-out active:translate-x-[5px] active:translate-y-[5px]"
+                                                    className="mt-3 inline-flex w-auto bg-gray-800 border-1 border-gray-700 hover:bg-gray-950  cursor-pointer text-gray-200 rounded-2xl items-center gap-x-2  px-3 py-2 text-sm text-center font-semibold  transition-all duration-150 ease-in-out active:translate-x-[5px] active:translate-y-[5px]"
                                                 >
                                                     <input
                                                         type="file"
@@ -228,7 +228,7 @@ function VideoForm({ video = false }, ref) {
                                         <input
                                             type="file"
                                             id="thumbnail"
-                                            className="w-full border p-1 file:mr-4 file:border-none cursor-pointer file:bg-pink-500 file:px-3 file:py-1.5"
+                                            className="w-full border-1  border-gray-700 p-1 file:mr-4 file:border-none cursor-pointer file:bg-gray-800  file:px-3 file:py-1.5"
                                             {...register("thumbnail", {
                                                 required: !video,
                                                 validate: (file) => {
@@ -275,7 +275,7 @@ function VideoForm({ video = false }, ref) {
                                             type="text"
                                             placeholder="Add video title"
                                             id="title"
-                                            className="w-full border focus:border-pink-400 bg-transparent px-2 py-1 outline-none"
+                                            className="w-full border-1 border-gray-700 focus:border-blue-500 bg-transparent px-2 py-1 outline-none"
                                             {...register("title", {
                                                 required: true,
                                             })}
@@ -297,7 +297,7 @@ function VideoForm({ video = false }, ref) {
                                         <textarea
                                             placeholder="Add some description"
                                             id="desc"
-                                            className="h-24 md:h-32 w-full resize-none border focus:border-pink-400 bg-transparent px-2 py-1 outline-none"
+                                            className="h-24 md:h-32 w-full resize-none border border-gray-700 focus:border-blue-500 bg-transparent px-2 py-1 outline-none"
                                             {...register("description")}
                                         />
                                     </div>
@@ -309,7 +309,7 @@ function VideoForm({ video = false }, ref) {
                                                 reset();
                                                 dialog.current.close();
                                             }}
-                                            className="border px-4 py-2 hover:bg-gray-800"
+                                            className="border-1 border-gray-900 px-4 py-2 text-gray-200  hover:bg-gray-900"
                                         >
                                             Cancel
                                         </button>
@@ -320,9 +320,9 @@ function VideoForm({ video = false }, ref) {
                                                 errors.videoFile ||
                                                 (!video && errors.thumbnail)
                                             }
-                                            className="bg-pink-600 px-4 py-2 text-black hover:font-semibold hover:border disabled:bg-pink-700 disabled:cursor-not-allowed"
+                                            className=" px-4 py-2 border-1 border-gray-900 hover:bg-pink-700 hover:text-black text-gray-200 hover:font-semibold hover:border disabled:bg-pink-700 disabled:cursor-not-allowed"
                                         >
-                                            {video ? "Update" : "Publish"}
+                                            {video ? "Update" : "Publish"} 
                                         </button>
                                     </div>
                                 </div>

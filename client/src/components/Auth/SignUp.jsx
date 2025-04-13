@@ -7,6 +7,7 @@ import Input from "../Input";
 import Button from "../Button";
 import { icons } from "../../assets/Icons.jsx";
 import { toast } from "react-toastify";
+import bg from "../../assets/bg.jpg"
 
 function SignUp() {
     const navigate = useNavigate();
@@ -51,8 +52,9 @@ function SignUp() {
     };
 
     return (
-        <div className="h-screen w-full overflow-y-auto bg-[#121212] text-white">
-            <div className="mx-auto my-10 flex w-full max-w-sm flex-col px-4">
+        <div className="h-screen relative w-full overflow-y-auto  text-white">
+            <img src={`${bg}`}></img>
+            <div className="items-center border-5 border-zinc-950 justify-center absolute w-screen md:w-1/2 h-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 backdrop-blur-sm flex flex-col">
                 <div className="mx-auto inline-block">
                     <Link to="/">
                         <Logo />
@@ -78,7 +80,7 @@ function SignUp() {
                     className="mx-auto mt-2 flex w-full max-w-sm flex-col px-4"
                 >
                     <Input
-                        label="Full Name"
+                        label="Full Name:"
                         required
                         className="px-2 rounded-lg"
                         placeholder="Enter your full name"
@@ -102,7 +104,7 @@ function SignUp() {
                         </p>
                     )}
                     <Input
-                        label="Username"
+                        label="Username:"
                         required
                         className="px-2 rounded-lg"
                         className2="pt-5"
@@ -128,7 +130,7 @@ function SignUp() {
                         </p>
                     )}
                     <Input
-                        label="Email Address"
+                        label="Email Address:"
                         placeholder="Enter your email address"
                         type="email"
                         className="px-2 rounded-lg"
@@ -156,7 +158,7 @@ function SignUp() {
                         </p>
                     )}
                     <Input
-                        label="Password"
+                        label="Password:"
                         className="px-2 rounded-lg"
                         className2="pt-5"
                         type="password"
@@ -173,7 +175,7 @@ function SignUp() {
                         </p>
                     )}
                     <Input
-                        label="Avatar"
+                        label="Avatar:"
                         type="file"
                         required
                         className="px-2 rounded-lg"
@@ -200,7 +202,7 @@ function SignUp() {
                         </p>
                     )}
                     <Input
-                        label="Cover Image"
+                        label="Cover Image:"
                         type="file"
                         className="px-2 rounded-lg"
                         className2="pt-5"
@@ -229,8 +231,8 @@ function SignUp() {
                     <Button
                         type="submit"
                         disabled={loading}
-                        className="mt-5 disabled:cursor-not-allowed py-2 rounded-lg"
-                        bgColor={loading ? "bg-pink-800" : "bg-pink-600"}
+                        className="mt-5 bg-[#004D61] hover:bg-[#1e424b] disabled:cursor-not-allowed py-2 rounded-lg"
+                       
                     >
                         {loading ? <span>{icons.loading}</span> : "Sign Up"}
                     </Button>
