@@ -6,7 +6,7 @@ const app=express()
 
 app.use(cors({
     origin:["http://localhost:5173",
-    "https://streamify-cj2n.onrender.com"],
+    "https://streamx-1.onrender.com"],
     methods: ['GET', 'POST', 'PUT', 'DELETE','PATCH'],
     credentials:true
 }))
