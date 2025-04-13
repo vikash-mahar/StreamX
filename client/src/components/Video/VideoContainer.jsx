@@ -49,9 +49,9 @@ function VideoContainer(){
         setPage((prevPage)=> prevPage+1);
     };
 
-    // if(loading){
-    //     return (<span className="flex justify-center mt-20">{icons.bigLoading}</span>);
-    // }
+    if(loading){
+        return (<span className="flex justify-center mt-20">{icons.bigLoading}</span>);
+    }
 
     if (videos.length === 0) {
         return (
