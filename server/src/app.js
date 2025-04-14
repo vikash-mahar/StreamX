@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser'
 const app=express()
 
 app.use(cors({
-    origin:["http://localhost:5173",
+    origin:[//"http://localhost:5173",//
     "https://streamx-1.onrender.com"],
     methods: ['GET', 'POST', 'PUT', 'DELETE','PATCH'],
     credentials:true
