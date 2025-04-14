@@ -1,4 +1,4 @@
-# 🎥 Streamify
+# 🎥 StreamX
 ### Built a YouTube-inspired video-sharing platform with social features, such as a tweet-style post system and user dashboards.The frontend is built using react and backend is powered by Node.js. It's a complete MERN application.
 
 ## 🚀 Features
@@ -37,5 +37,4 @@
 | ----------------- | -------------------------------------------------------------------------------- |
 | Live Link         | [click here ](https://streamify-cj2n.onrender.com)                      |
 | Model             | [click here ](https://app.eraser.io/workspace/YtPqZ1VogxGy1jzIDkzj) |# rep
-# StreamX
-# StreamX
+
