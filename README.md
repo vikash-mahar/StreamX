@@ -35,6 +35,6 @@
 ## 🔗 Important Links
 | Content           | Link                                                                             |
 | ----------------- | -------------------------------------------------------------------------------- |
-| Live Link         | [click here ](https://streamify-cj2n.onrender.com)                      |
+| Live Link         | [click here ](https://streamx-1.onrender.com/)                      |
 | Model             | [click here ](https://app.eraser.io/workspace/YtPqZ1VogxGy1jzIDkzj) |# rep
 
